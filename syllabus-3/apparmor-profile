@@ -1,0 +1,16 @@
+#include <tunables/global>
+
+profile flask-apparmor /usr/bin/python* {
+    # Capabilities
+    capability net_bind_service,
+
+    # Restrictions
+    deny network inet6,
+    deny ptrace,
+    deny mount,
+
+    # Allow access to Python shared libraries
+    /usr/lib/** r,
+    /usr/lib/x86_64-linux-gnu/** r,
+}
+
